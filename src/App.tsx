@@ -3,10 +3,10 @@ import OperatorSelector from './components/OperatorSelector';
 import Checklist from './components/Checklist';
 import Preview from './components/Preview';
 import ColorChecker from './components/ColorChecker';
-import AutoChecker from './components/AutoChecker';
+import ValidatorChecker from './components/ValidatorChecker';
 
 function App() {
-  const [tab, setTab] = useState<'checklist' | 'colors' | 'auto'>('checklist');
+  const [tab, setTab] = useState<'checklist' | 'colors' | 'validator' | 'auto'>('checklist');
 
   return (
     <div className="app">
@@ -36,13 +36,18 @@ function App() {
             onClick={() => setTab('auto')}>
             Авто-проверка
           </button>
+          <button
+            className={`app__tab ${tab === 'validator' ? 'app__tab--active' : ''}`}
+            onClick={() => setTab('validator')}>
+            Валидатор
+          </button>
         </div>
 
         <div className="app__content">
           <aside className="app__sidebar">
             {tab === 'checklist' && <Checklist />}
             {tab === 'colors' && <ColorChecker />}
-            {tab === 'auto' && <AutoChecker />}
+            {tab === 'validator' && <ValidatorChecker />}
           </aside>
 
           <section className="app__preview">

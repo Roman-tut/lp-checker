@@ -1,0 +1,283 @@
+{
+  "operator": "life",
+  "version": "1.1",
+  "updated": "2025-05-28",
+  "rules": {
+    "font_rules": [
+      {
+        "id": "font-family",
+        "description": "Тип шрифта — только Arial",
+        "selector": "*",
+        "property": "font-family",
+        "must_contain": "Arial",
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-header",
+        "description": "Шрифт хедера/футера/Выйти — не менее 13px",
+        "selector": ".pre-header, .footer, .footer__text, .exit",
+        "property": "font-size",
+        "min_px": 13,
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-btn-step1",
+        "description": "Шрифт кнопки 1 шага — не менее 14px",
+        "selector": ".agreement, .agreement__text",
+        "property": "font-size",
+        "min_px": 14,
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-btn-step2",
+        "description": "Шрифт кнопки активации — не менее 20px",
+        "selector": ".button__text, [data-btntext]",
+        "property": "font-size",
+        "min_px": 20,
+        "critical": true,
+        "manual": true
+      }
+    ],
+    "structure_rules": [
+      {
+        "id": "checkbox-exists",
+        "description": "Чек-бокс input[type=checkbox] присутствует",
+        "selector": "input[type='checkbox']",
+        "must_exist": true,
+        "critical": true
+      },
+      {
+        "id": "exit-link",
+        "description": "Ссылка Выйти / Назад / Отмена / Вернуться присутствует",
+        "selector": "a",
+        "text_contains": "выйти",
+        "critical": true
+      },
+      {
+        "id": "age-sign",
+        "description": "Знак 18+ присутствует на странице",
+        "selector": "body",
+        "text_contains": "18+",
+        "critical": true
+      },
+      {
+        "id": "no-scroll",
+        "description": "user-scalable=no в мета теге",
+        "selector": "meta[name='viewport']",
+        "attr_contains": {
+          "attr": "content",
+          "value": "user-scalable=no"
+        },
+        "critical": true
+      },
+      {
+        "id": "footer-app",
+        "description": "Футер содержит ссылку на Мой life:)",
+        "selector": ".footer, footer",
+        "text_contains": "мой life",
+        "critical": true
+      }
+    ],
+    "button_rules": [
+      {
+        "id": "btn-text-subscribe",
+        "description": "Кнопка содержит допустимое слово действия",
+        "selector": "button, .button, .btn",
+        "text_contains_any": [
+          "подписаться",
+          "смотреть",
+          "просмотреть",
+          "слушать",
+          "прослушать",
+          "воспроизвести",
+          "продолжить",
+          "играть",
+          "скачать",
+          "загрузить",
+          "получить",
+          "заказать",
+          "play",
+          "начать",
+          "подключить",
+          "активировать",
+          "войти"
+        ],
+        "critical": false
+      },
+      {
+        "id": "btn-width",
+        "description": "Ширина кнопки не более 80% от ширины LP — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-clickarea",
+        "description": "Кликабельная область кнопки — проверь вручную на 320x480",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-font-size",
+        "description": "Шрифт кнопки активации не менее 20px — проверь вручную",
+        "manual": true,
+        "critical": true
+      }
+    ],
+    "archive_rules": [
+      {
+        "id": "no-external-scripts",
+        "description": "Нет внешних скриптов",
+        "selector": "script[src^='http']",
+        "must_not_exist": true,
+        "critical": true
+      },
+      {
+        "id": "no-external-styles",
+        "description": "Нет внешних CSS",
+        "selector": "link[href^='http']",
+        "must_not_exist": true,
+        "critical": true
+      },
+      {
+        "id": "no-svg-xmlns",
+        "description": "Нет xmlns атрибута в SVG",
+        "selector": "svg[xmlns]",
+        "must_not_exist": true,
+        "critical": false
+      },
+      {
+        "id": "img-alt",
+        "description": "У всех изображений есть alt атрибут",
+        "selector": "img",
+        "all_must_have_attr": "alt",
+        "critical": false
+      }
+    ],
+    "css_rules": [
+      {
+        "id": "css-font-family",
+        "description": "Используется шрифт Arial",
+        "property": "font-family",
+        "must_contain": "arial",
+        "critical": true
+      },
+      {
+        "id": "css-font-min-global",
+        "description": "Все шрифты не менее 13px",
+        "property": "font-size",
+        "min_px": 13,
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "css-colors-palette",
+        "description": "Цвета в CSS соответствуют палитре оператора",
+        "property": "color",
+        "check_palette": true,
+        "critical": false
+      }
+    ],
+    "color_pairs": [
+      { "text": "ffffff", "background": "000000" },
+      { "text": "ffffff", "background": "333333" },
+      { "text": "ffffff", "background": "666666" },
+      { "text": "000000", "background": "999999" },
+      { "text": "000000", "background": "cccccc" },
+      { "text": "000000", "background": "ffffff" },
+      { "text": "ffffff", "background": "dc3c31" },
+      { "text": "ffffff", "background": "9c27b0" },
+      { "text": "ffffff", "background": "673ab7" },
+      { "text": "ffffff", "background": "3f51b5" },
+      { "text": "000000", "background": "2196f3" },
+      { "text": "000000", "background": "03a9f4" },
+      { "text": "000000", "background": "00bcd4" },
+      { "text": "000000", "background": "4caf50" },
+      { "text": "000000", "background": "8bc34a" },
+      { "text": "000000", "background": "cddc39" },
+      { "text": "000000", "background": "ffeb3b" },
+      { "text": "000000", "background": "ffc107" },
+      { "text": "000000", "background": "ff9800" },
+      { "text": "ffffff", "background": "ff5722" },
+      { "text": "ffffff", "background": "795548" },
+      { "text": "ffffff", "background": "607d8b" },
+      { "text": "000000", "background": "b2b2b2" },
+      { "text": "000000", "background": "e6e6e6" },
+      { "text": "000000", "background": "ef9e98" },
+      { "text": "000000", "background": "ce93d8" },
+      { "text": "000000", "background": "b39cdb" },
+      { "text": "000000", "background": "9ea8da" },
+      { "text": "000000", "background": "90cbf9" },
+      { "text": "000000", "background": "81d4fb" },
+      { "text": "000000", "background": "80deeb" },
+      { "text": "000000", "background": "80cbc4" },
+      { "text": "000000", "background": "a5d7a7" },
+      { "text": "000000", "background": "c5e1a5" },
+      { "text": "000000", "background": "e5ee9b" },
+      { "text": "000000", "background": "fef59d" },
+      { "text": "000000", "background": "fae083" },
+      { "text": "000000", "background": "f7cc7f" },
+      { "text": "000000", "background": "f3aa90" },
+      { "text": "000000", "background": "bcaaa4" },
+      { "text": "000000", "background": "b0bfc5" },
+      { "text": "000000", "background": "bfbfbf" },
+      { "text": "000000", "background": "cccccc" },
+      { "text": "000000", "background": "d9d9d9" },
+      { "text": "000000", "background": "e5e5e5" },
+      { "text": "000000", "background": "f2f2f2" },
+      { "text": "000000", "background": "f6cecb" },
+      { "text": "000000", "background": "e6c9eb" },
+      { "text": "000000", "background": "d8cdec" },
+      { "text": "000000", "background": "d0d3ed" },
+      { "text": "000000", "background": "c7e5fc" },
+      { "text": "000000", "background": "c1eafd" },
+      { "text": "000000", "background": "bfeef5" },
+      { "text": "000000", "background": "bfe5e2" },
+      { "text": "000000", "background": "d2ecd3" },
+      { "text": "000000", "background": "e2f0d2" },
+      { "text": "000000", "background": "f2f6ce" },
+      { "text": "000000", "background": "feface" },
+      { "text": "000000", "background": "fcefc1" },
+      { "text": "000000", "background": "fbe5bf" },
+      { "text": "000000", "background": "f8d5c8" },
+      { "text": "000000", "background": "ddd4d1" },
+      { "text": "000000", "background": "d8dfe2" },
+      { "text": "ffffff", "background": "d32e25" },
+      { "text": "ffffff", "background": "8a219f" },
+      { "text": "ffffff", "background": "552ba6" },
+      { "text": "ffffff", "background": "3140a5" },
+      { "text": "ffffff", "background": "3784f1" },
+      { "text": "ffffff", "background": "4198f2" },
+      { "text": "ffffff", "background": "4dadc9" },
+      { "text": "ffffff", "background": "3a8475" },
+      { "text": "ffffff", "background": "489f3f" },
+      { "text": "ffffff", "background": "78b53a" },
+      { "text": "000000", "background": "c1d444" },
+      { "text": "000000", "background": "fbe64d" },
+      { "text": "000000", "background": "f4b23e" },
+      { "text": "ffffff", "background": "ef8332" },
+      { "text": "ffffff", "background": "eb4225" },
+      { "text": "ffffff", "background": "664438" },
+      { "text": "ffffff", "background": "4e6a78" },
+      { "text": "ffffff", "background": "283238" },
+      { "text": "ffffff", "background": "3c2824" },
+      { "text": "ffffff", "background": "b24017" },
+      { "text": "ffffff", "background": "d75b1a" },
+      { "text": "ffffff", "background": "f07721" },
+      { "text": "ffffff", "background": "817825" },
+      { "text": "ffffff", "background": "406826" },
+      { "text": "ffffff", "background": "2f5e27" },
+      { "text": "ffffff", "background": "1e4c41" },
+      { "text": "ffffff", "background": "265f64" },
+      { "text": "ffffff", "background": "1f5698" },
+      { "text": "ffffff", "background": "1a469d" },
+      { "text": "ffffff", "background": "19227b" },
+      { "text": "ffffff", "background": "2d1b8e" },
+      { "text": "ffffff", "background": "441689" },
+      { "text": "ffffff", "background": "7e1c4e" },
+      { "text": "ffffff", "background": "aa2c20" }
+    ]
+  }
+}

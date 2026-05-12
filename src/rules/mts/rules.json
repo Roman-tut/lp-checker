@@ -1,0 +1,177 @@
+{
+  "operator": "mts",
+  "version": "1.9",
+  "updated": "2025-06-04",
+  "rules": {
+    "font_rules": [
+      {
+        "id": "font-family",
+        "description": "Тип шрифта — только Arial",
+        "selector": "*",
+        "property": "font-family",
+        "must_contain": "Arial",
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-header",
+        "description": "Шрифт хедера/футера/Выйти — не менее 13px",
+        "selector": ".pre-header, .footer, .footer__text, .exit",
+        "property": "font-size",
+        "min_px": 13,
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-btn-step1",
+        "description": "Шрифт кнопки 1 шага — не менее 14px",
+        "selector": ".agreement, .agreement__text",
+        "property": "font-size",
+        "min_px": 14,
+        "critical": true,
+        "manual": true
+      },
+      {
+        "id": "font-btn-step2",
+        "description": "Шрифт кнопки активации — не менее 20px",
+        "selector": ".button__text, [data-btntext]",
+        "property": "font-size",
+        "min_px": 20,
+        "critical": true,
+        "manual": true
+      }
+    ],
+    "structure_rules": [
+      {
+        "id": "checkbox-exists",
+        "description": "Чек-бокс input[type=checkbox] присутствует",
+        "selector": "input[type='checkbox']",
+        "must_exist": true,
+        "critical": true
+      },
+      {
+        "id": "exit-link",
+        "description": "Ссылка Выйти / Назад / Отмена присутствует",
+        "selector": "a",
+        "text_contains": "выйти",
+        "critical": true
+      },
+      {
+        "id": "age-sign",
+        "description": "Знак 18+ присутствует на странице",
+        "selector": "body",
+        "text_contains": "18+",
+        "critical": true
+      },
+      {
+        "id": "no-scroll",
+        "description": "user-scalable=no в мета теге",
+        "selector": "meta[name='viewport']",
+        "attr_contains": {
+          "attr": "content",
+          "value": "user-scalable=no"
+        },
+        "critical": true
+      },
+      {
+        "id": "unique-lp",
+        "description": "LP уникален — заменены фон, цвет кнопки и графические элементы",
+        "manual": true,
+        "critical": true
+      }
+    ],
+    "archive_rules": [
+      {
+        "id": "no-external-scripts",
+        "description": "Нет внешних скриптов",
+        "selector": "script[src^='http']",
+        "must_not_exist": true,
+        "critical": true
+      },
+      {
+        "id": "no-external-styles",
+        "description": "Нет внешних CSS",
+        "selector": "link[href^='http']",
+        "must_not_exist": true,
+        "critical": true
+      },
+      {
+        "id": "no-svg-xmlns",
+        "description": "Нет xmlns атрибута в SVG",
+        "selector": "svg[xmlns]",
+        "must_not_exist": true,
+        "critical": false
+      },
+      {
+        "id": "img-alt",
+        "description": "У всех изображений есть alt атрибут",
+        "selector": "img",
+        "all_must_have_attr": "alt",
+        "critical": false
+      }
+    ],
+    "button_rules": [
+      {
+        "id": "btn-text-subscribe",
+        "description": "Кнопка содержит допустимое слово действия",
+        "selector": "button, .button, .btn",
+        "text_contains_any": [
+          "подписаться",
+          "смотреть",
+          "просмотреть",
+          "слушать",
+          "прослушать",
+          "воспроизвести",
+          "продолжить",
+          "играть",
+          "скачать",
+          "загрузить",
+          "получить",
+          "заказать",
+          "play",
+          "начать",
+          "подключить",
+          "активировать",
+          "войти"
+        ],
+        "critical": false
+      },
+      {
+        "id": "btn-width",
+        "description": "Ширина кнопки не более 80% от ширины LP — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-clickarea",
+        "description": "Кликабельная область кнопки — проверь вручную на 320x480",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-font-size",
+        "description": "Шрифт кнопки активации не менее 20px — проверь вручную",
+        "manual": true,
+        "critical": true
+      }
+    ],
+    "css_rules": [
+      {
+        "id": "css-font-family",
+        "description": "Используется шрифт Arial",
+        "property": "font-family",
+        "must_contain": "arial",
+        "critical": true
+      },
+      {
+        "id": "css-font-min-global",
+        "description": "Все шрифты не менее 13px",
+        "property": "font-size",
+        "min_px": 13,
+        "manual": true,
+        "critical": true
+      }
+    ],
+    "color_pairs": []
+  }
+}
