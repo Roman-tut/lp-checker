@@ -1,17 +1,6 @@
 import { useCheckerStore } from '../store/checkerStore';
 
-const operators = [
-  { id: 'a1', label: 'BY — A1' },
-  { id: 'mts', label: 'BY — MTS' },
-  { id: 'life', label: 'BY — LIFE' },
-];
-
-const themes = [
-  { id: 'adult', label: 'Адалт' },
-  { id: 'music', label: 'Музыка' },
-  { id: 'games', label: 'Игры' },
-  { id: 'education', label: 'Обучение' },
-];
+import { OPERATORS, THEMES } from '../config/constants';
 
 function OperatorSelector() {
   const operator = useCheckerStore((state) => state.operator);
@@ -27,11 +16,11 @@ function OperatorSelector() {
         <div className="selector__group">
           <label className="selector__label">Оператор</label>
           <div className="selector__buttons">
-            {operators.map((op) => (
+            {OPERATORS.map((op) => (
               <button
                 key={op.id}
                 className={`selector__btn ${operator === op.id ? 'selector__btn--active' : ''}`}
-                onClick={() => setOperator(op.id as 'a1' | 'mts')}>
+                onClick={() => setOperator(op.id)}>
                 {op.label}
               </button>
             ))}
@@ -41,11 +30,11 @@ function OperatorSelector() {
         <div className="selector__group">
           <label className="selector__label">Тематика</label>
           <div className="selector__buttons">
-            {themes.map((t) => (
+            {THEMES.map((t) => (
               <button
                 key={t.id}
                 className={`selector__btn ${theme === t.id ? 'selector__btn--active' : ''}`}
-                onClick={() => setTheme(t.id as 'adult' | 'music' | 'games' | 'education')}>
+                onClick={() => setTheme(t.id)}>
                 {t.label}
               </button>
             ))}

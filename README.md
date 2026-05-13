@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# LP Checker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Автоматическая и ручная проверка лендингов по требованиям операторов A1, МТС и Life.**
 
-Currently, two official plugins are available:
+Загрузи ZIP-архив с лендингом или вставь HTML-код — инструмент проанализирует структуру, текст, шрифты, цвета и соберёт отчёт об ошибках. Поддерживается drag & drop, а также ручной чек-лист для поэтапного контроля.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🚀 [Открыть приложение](https://oculus-react-zeta.vercel.app) (замени на актуальную ссылку, если она изменилась)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Возможности
 
-## Expanding the ESLint configuration
+- **Автоматическая проверка (валидатор)**
+  - Загрузка ZIP-архива или вставка HTML вручную
+  - Извлечение HTML и CSS прямо в браузере
+  - Проверка структуры: наличие чекбокса, кнопки, ссылки «Выйти», знака 18+ и т.д.
+  - Проверка обязательных атрибутов (`data-btn`, `user-scalable=no`)
+  - Проверка текста на кнопках (допустимые слова действия)
+  - Проверка внешних ресурсов (нет скриптов и стилей с внешних доменов)
+  - Анализ CSS: шрифт Arial, минимальный размер шрифта, соответствие палитре цветов оператора
+  - Drag & drop загрузка архива с мгновенной проверкой
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Ручной чек-лист**
+  - Пункты берутся из тех же правил, что и для авто-проверки
+  - Группировка по категориям: «Структура», «Кнопка», «Архив», «Шрифты», «CSS»
+  - Отметка выполненных пунктов, счётчик прогресса
+  - Подсветка критичных требований
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Три оператора**
+  - A1 (Беларусь) — версия правил 1.7
+  - МТС (Беларусь) — версия 1.9
+  - Life (Беларусь) — версия 1.1
+  - Все правила хранятся в структурированных JSON-файлах, легко обновлять
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧩 Как это работает
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Выбери оператора и тематику (опционально).
+2. Открой вкладку **«Авто-проверка»**.
+3. Перетащи ZIP-архив с лендингом в зону загрузки или вставь HTML-код вручную.
+4. Мгновенно получи отчёт: ✅ пройдено, ❌ не пройдено, 👁 требуется ручная проверка.
+5. При необходимости используй вкладку **«Чеклист (ручная)»** для пошагового контроля.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Структура правил (`rules/`)
+
+Все требования операторов хранятся в нормализованном JSON-формате, например `rules/a1/rules.json`:
+
+```json
+{
+  "operator": "a1",
+  "version": "1.7",
+  "updated": "2025-05-29",
+  "rules": {
+    "structure_rules": [ ... ],
+    "button_rules": [ ... ],
+    "archive_rules": [ ... ],
+    "font_rules": [ ... ],
+    "css_rules": [ ... ],
+    "color_pairs": [ ... ]
+  }
+}
 ```

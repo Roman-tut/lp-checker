@@ -53,7 +53,7 @@
         "id": "exit-link",
         "description": "Ссылка Выйти / Назад / Отмена / Вернуться присутствует",
         "selector": "a",
-        "text_contains": "выйти",
+        "text_contains_any": ["выйти", "назад", "отмена", "вернуться"],
         "critical": true
       },
       {
@@ -79,6 +79,18 @@
         "selector": ".footer, footer",
         "text_contains": "мой life",
         "critical": true
+      },
+      {
+        "id": "checkbox-text",
+        "description": "Чек-бокс содержит фразу 'Я согласен с правилами' и гиперссылку на условия",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "links-underline",
+        "description": "Все ссылки на LP подчёркнуты",
+        "manual": true,
+        "critical": false
       }
     ],
     "button_rules": [
@@ -110,6 +122,12 @@
       {
         "id": "btn-width",
         "description": "Ширина кнопки не более 80% от ширины LP — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-height",
+        "description": "Высота кнопки не более 25% от высоты LP — проверь вручную",
         "manual": true,
         "critical": true
       },

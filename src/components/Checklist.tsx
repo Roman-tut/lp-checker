@@ -1,8 +1,39 @@
 import { useCheckerStore } from '../store/checkerStore';
-import { a1Checklist } from '../data/a1';
-import { mtsChecklist } from '../data/mts';
-import { type ChecklistItem } from '../data/a1';
-import { lifeChecklist } from '../data/life';
+import a1Rules from '../rules/a1/rules.json';
+import mtsRules from '../rules/mts/rules.json';
+import lifeRules from '../rules/life/rules.json';
+import type { RulesConfig, ChecklistItem, RuleCategory } from '../validator/types';
+
+function getChecklistItems(operator: string): ChecklistItem[] {
+  let data: { rules: RulesConfig };
+  if (operator === 'a1') data = a1Rules as unknown as { rules: RulesConfig };
+  else if (operator === 'mts') data = mtsRules as unknown as { rules: RulesConfig };
+  else data = lifeRules as unknown as { rules: RulesConfig };
+
+  const items: ChecklistItem[] = [];
+  const groups: { key: RuleCategory; label: string }[] = [
+    { key: 'structure_rules', label: 'Структура LP' },
+    { key: 'button_rules', label: 'Кнопка' },
+    { key: 'archive_rules', label: 'Архив' },
+    { key: 'font_rules', label: 'Шрифты' },
+    { key: 'css_rules', label: 'CSS (глобально)' },
+  ];
+
+  groups.forEach(({ key, label }) => {
+    const rules = data.rules[key];
+    if (Array.isArray(rules)) {
+      rules.forEach((rule) => {
+        items.push({
+          id: rule.id,
+          text: rule.description,
+          critical: rule.critical,
+          category: label,
+        });
+      });
+    }
+  });
+  return items;
+}
 
 function Checklist() {
   const operator = useCheckerStore((state) => state.operator);
@@ -13,8 +44,8 @@ function Checklist() {
   if (!operator) {
     return <div className="checklist__empty">Выберите оператора</div>;
   }
+  const items = getChecklistItems(operator);
 
-  const items = operator === 'a1' ? a1Checklist : operator === 'mts' ? mtsChecklist : lifeChecklist;
   // группируем по категориям
   const grouped = items.reduce<Record<string, ChecklistItem[]>>((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];

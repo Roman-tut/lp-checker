@@ -1,7 +1,7 @@
 import a1Rules from '../rules/a1/rules.json';
 import mtsRules from '../rules/mts/rules.json';
 import lifeRules from '../rules/life/rules.json';
-
+import beelineRules from '../rules/beeline/rules.json';
 import {
   type BaseRule,
   type ValidationResult,
@@ -15,6 +15,7 @@ function getRules(operator: string) {
   if (operator === 'a1') return a1Rules;
   if (operator === 'mts') return mtsRules;
   if (operator === 'life') return lifeRules;
+  if (operator === 'beeline') return beelineRules;
   throw new Error(`Неизвестный оператор: ${operator}`);
 }
 

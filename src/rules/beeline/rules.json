@@ -1,42 +1,34 @@
 {
-  "operator": "mts",
-  "version": "1.9",
-  "updated": "2025-06-04",
+  "operator": "beeline",
+  "version": "1.0",
+  "updated": "2025-06-13",
   "rules": {
     "font_rules": [
       {
-        "id": "font-family",
-        "description": "Тип шрифта — только Arial",
-        "selector": "*",
+        "id": "font-header-title",
+        "description": "Шрифт названия сервиса в заголовке: Open Sans, не менее 22px — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "font-header-desc",
+        "description": "Шрифт описания сервиса: Open Sans, не менее 18px — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "font-global-family",
+        "description": "Основной шрифт страницы — Arial (кроме заголовка)",
         "property": "font-family",
-        "must_contain": "Arial",
+        "must_contain": "arial",
         "critical": true,
         "manual": true
       },
       {
-        "id": "font-header",
-        "description": "Шрифт хедера/футера/Выйти — не менее 13px",
-        "selector": ".pre-header, .footer, .footer__text, .exit",
+        "id": "font-global-min-size",
+        "description": "Минимальный размер шрифта (кроме заголовков) 13px",
         "property": "font-size",
         "min_px": 13,
-        "critical": true,
-        "manual": true
-      },
-      {
-        "id": "font-btn-step1",
-        "description": "Шрифт кнопки 1 шага — не менее 14px",
-        "selector": ".agreement, .agreement__text",
-        "property": "font-size",
-        "min_px": 14,
-        "critical": true,
-        "manual": true
-      },
-      {
-        "id": "font-btn-step2",
-        "description": "Шрифт кнопки активации — не менее 20px",
-        "selector": ".button__text, [data-btntext]",
-        "property": "font-size",
-        "min_px": 20,
         "critical": true,
         "manual": true
       }
@@ -50,10 +42,9 @@
         "critical": true
       },
       {
-        "id": "exit-link",
-        "description": "Ссылка Выйти / Назад / Отмена присутствует",
-        "selector": "a",
-        "text_contains_any": ["выйти", "назад", "отмена"],
+        "id": "exit-or-close",
+        "description": "Наличие кнопки 'Выйти' или крестика для закрытия LP",
+        "manual": true,
         "critical": true
       },
       {
@@ -74,56 +65,31 @@
         "critical": true
       },
       {
+        "id": "static-price",
+        "description": "Стоимость указана статично и контрастным цветом/заливкой",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "no-misleading-phrases",
+        "description": "Запрещены фразы: 'Нажми, чтобы продолжить', 'Видео готово' и подобные",
+        "manual": true,
+        "critical": true
+      },
+      {
         "id": "unique-lp",
-        "description": "LP уникален — заменены фон, цвет кнопки и графические элементы",
+        "description": "LP уникален (фон, кнопка, графика заменены)",
         "manual": true,
         "critical": true
-      },
-      {
-        "id": "footer-sms",
-        "description": "Футер содержит информацию об отключении подписки (STOP/SMS)",
-        "selector": ".footer, footer",
-        "text_contains_any": ["stop", "sms", "отключить", "отправьте"],
-        "critical": true
-      },
-      {
-        "id": "checkbox-text",
-        "description": "Чек-бокс содержит фразу 'Я согласен с правилами' и гиперссылку на условия",
-        "manual": true,
-        "critical": true
-      },
-      {
-        "id": "links-underline",
-        "description": "Все ссылки на LP подчёркнуты",
-        "manual": true,
-        "critical": false
       }
     ],
     "button_rules": [
       {
         "id": "btn-text-subscribe",
-        "description": "Кнопка содержит допустимое слово действия",
+        "description": "Кнопка содержит слово 'Подключить'",
         "selector": "button, .button, .btn",
-        "text_contains_any": [
-          "подписаться",
-          "смотреть",
-          "просмотреть",
-          "слушать",
-          "прослушать",
-          "воспроизвести",
-          "продолжить",
-          "играть",
-          "скачать",
-          "загрузить",
-          "получить",
-          "заказать",
-          "play",
-          "начать",
-          "подключить",
-          "активировать",
-          "войти"
-        ],
-        "critical": false
+        "text_contains": "подключить",
+        "critical": true
       },
       {
         "id": "btn-width",
@@ -145,7 +111,7 @@
       },
       {
         "id": "btn-font-size",
-        "description": "Шрифт кнопки активации не менее 20px — проверь вручную",
+        "description": "Размер шрифта кнопки не менее 20px — проверь вручную",
         "manual": true,
         "critical": true
       }
@@ -183,10 +149,10 @@
     "css_rules": [
       {
         "id": "css-font-family",
-        "description": "Используется шрифт Arial",
+        "description": "Основной шрифт — Arial (заголовки могут быть Open Sans)",
         "property": "font-family",
         "must_contain": "arial",
-        "critical": true
+        "critical": false
       },
       {
         "id": "css-font-min-global",

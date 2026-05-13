@@ -2,11 +2,10 @@ import { useState } from 'react';
 import OperatorSelector from './components/OperatorSelector';
 import Checklist from './components/Checklist';
 import Preview from './components/Preview';
-import ColorChecker from './components/ColorChecker';
 import ValidatorChecker from './components/ValidatorChecker';
 
 function App() {
-  const [tab, setTab] = useState<'checklist' | 'colors' | 'validator' | 'auto'>('checklist');
+  const [tab, setTab] = useState<'checklist' | 'validator'>('checklist');
 
   return (
     <div className="app">
@@ -24,29 +23,19 @@ function App() {
           <button
             className={`app__tab ${tab === 'checklist' ? 'app__tab--active' : ''}`}
             onClick={() => setTab('checklist')}>
-            Чеклист
+            Чек - лист
           </button>
-          <button
-            className={`app__tab ${tab === 'colors' ? 'app__tab--active' : ''}`}
-            onClick={() => setTab('colors')}>
-            Проверка цветов
-          </button>
-          <button
-            className={`app__tab ${tab === 'auto' ? 'app__tab--active' : ''}`}
-            onClick={() => setTab('auto')}>
-            Авто-проверка
-          </button>
+
           <button
             className={`app__tab ${tab === 'validator' ? 'app__tab--active' : ''}`}
             onClick={() => setTab('validator')}>
-            Валидатор
+            Авто - проверка
           </button>
         </div>
 
         <div className="app__content">
           <aside className="app__sidebar">
             {tab === 'checklist' && <Checklist />}
-            {tab === 'colors' && <ColorChecker />}
             {tab === 'validator' && <ValidatorChecker />}
           </aside>
 

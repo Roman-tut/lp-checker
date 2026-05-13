@@ -58,9 +58,20 @@
       },
       {
         "id": "exit-link",
-        "description": "Ссылка Выйти присутствует",
+        "description": "Ссылка с текстом 'Выйти' присутствует",
         "selector": "a",
         "text_contains": "выйти",
+        "critical": false
+      },
+      {
+        "id": "exit-link-google",
+        "description": "Ссылка 'Выйти' ведёт на google.by",
+        "selector": "a",
+        "text_contains": "выйти",
+        "attr_contains": {
+          "attr": "href",
+          "value": "google.by"
+        },
         "critical": true
       },
       {
@@ -79,6 +90,18 @@
           "value": "user-scalable=no"
         },
         "critical": true
+      },
+      {
+        "id": "checkbox-text",
+        "description": "Чек-бокс содержит фразу 'Я согласен с правилами' и гиперссылку на условия",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "links-underline",
+        "description": "Все ссылки на LP подчёркнуты",
+        "manual": true,
+        "critical": false
       }
     ],
     "button_rules": [
@@ -109,6 +132,12 @@
       {
         "id": "btn-width",
         "description": "Ширина кнопки не более 80% от ширины LP — проверь вручную",
+        "manual": true,
+        "critical": true
+      },
+      {
+        "id": "btn-height",
+        "description": "Высота кнопки не более 25% от высоты LP — проверь вручную",
         "manual": true,
         "critical": true
       },

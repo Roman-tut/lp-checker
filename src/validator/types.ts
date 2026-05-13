@@ -1,3 +1,5 @@
+import type { OperatorId, ThemeId } from '../config/constants';
+
 // Тип одного правила
 export interface BaseRule {
   id: string;
@@ -59,4 +61,30 @@ export interface RulesConfig {
   archive_rules: BaseRule[];
   color_pairs: { text: string; background: string }[];
   font_rules: BaseRule[];
+}
+
+export interface ChecklistItem {
+  id: string;
+  text: string;
+  critical: boolean;
+  category: string;
+}
+
+export type RuleCategory =
+  | 'structure_rules'
+  | 'button_rules'
+  | 'archive_rules'
+  | 'font_rules'
+  | 'css_rules';
+
+export interface CheckerStore {
+  operator: OperatorId | null;
+  theme: ThemeId | null;
+  url: string;
+  checkedItems: Record<string, boolean>;
+  setOperator: (op: OperatorId | null) => void;
+  setTheme: (theme: ThemeId | null) => void;
+  setUrl: (url: string) => void;
+  toggleItem: (id: string) => void;
+  resetChecklist: () => void;
 }

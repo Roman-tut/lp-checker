@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import { useCheckerStore } from '../store/checkerStore';
 import { validate, validateCSS } from '../validator/engine';
 import { type ValidationReport, type CSSValidationResult } from '../validator/types';
@@ -13,6 +13,7 @@ function ValidatorChecker() {
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState('');
   const [dragOver, setDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const runValidation = useCallback(
     (html: string, css: string) => {
@@ -117,6 +118,10 @@ function ValidatorChecker() {
     return <div className="checklist__empty">Выберите оператора</div>;
   }
 
+  const handleZoneClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className="colorchecker">
       <p className="colorchecker__hint">
@@ -128,6 +133,7 @@ function ValidatorChecker() {
         className={`validator__upload ${dragOver ? 'validator__upload--active' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
+        onClick={handleZoneClick}
         onDrop={handleDrop}>
         <label className="validator__upload-label">
           <input
@@ -135,6 +141,7 @@ function ValidatorChecker() {
             accept=".zip"
             onChange={handleFileChange}
             style={{ display: 'none' }}
+            ref={fileInputRef}
           />
           📦{' '}
           {loading
